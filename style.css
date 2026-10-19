@@ -1,5 +1,18 @@
+body {
+    background-color: gray;
+}
+
 #grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+}
+
+.itemimg {
+    height: 30px;
+    width: 30px;
+}
+
+.item:hover {
+    color: white;
 }

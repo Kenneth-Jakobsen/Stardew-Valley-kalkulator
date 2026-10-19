@@ -2,11 +2,35 @@ const model = {
     currentPage: 'cropPage',
 
     viewState: {
+        cropPage: {
+            cropSeason: "spring",
+            cropSearch: '',
 
+        }
 
     },
-    data: {}
+    data: {
+        crops: {
+            spring: [
+                {icon: "bilder/parsnip.png", text: "Parsnip", search: "parsnip"},
+                {icon: "bilder/potato.png", text: "Potato", search: "potato"},
+                {icon: "bilder/cflower.png", text: "Cauliflower", search: "cauliflower"},
+                {icon: "bilder/bean.png", text: "Green Bean", search: "green bean"},
+                {icon: "bilder/kale.png", text: "Kale", search: "kale"},
+                {icon: "bilder/garlic.png", text: "Garlic", search: "garlic"},
+                {icon: "bilder/sberry.png", text: "Strawberry", search: "strawberry"},
+                {icon: "bilder/carrot.png", text: "Carrot", search: "carrot"},
+                {icon: "bilder/rhubarb.png", text: "Rhubarb", search: "rhubarb"},
+            ],
+            summer: [],
+            fall: [],
+            winter: []
+        },
+        
+
+    },
 }
+
 
 
 

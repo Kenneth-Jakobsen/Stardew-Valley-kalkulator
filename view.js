@@ -24,11 +24,11 @@ function cropView(){
     <section>
         Choose season:
         <select>
-            <option>Spring</option>
-            <option>Summer</option>
-            <option>Fall</option>
-            <option>Winter</option>
-            <option>All</option>
+            <option value="spring">Spring</option>
+            <option value="summer">Summer</option>
+            <option value="fall">Fall</option>
+            <option value="winter">Winter</option>
+            <option value="all">All</option>
         </select>
     </section>
 
@@ -38,7 +38,9 @@ function cropView(){
             <input type="checkbox"> Include trees
             <br>
             <!-------------------------------------------------------->
-            <input placeholder="Search crops">
+            <input placeholder="Search crops"
+            oninput="searchCrop(this.value)">
+            <div>${showCrops()}</div>
         </div>
 <!-------------------------------------------------------->
         <div>
@@ -72,11 +74,38 @@ function cropView(){
     return html
 }
 
-
 function artisanView(){
     let html = /*HTML*/ `
     <h2>Artisan Goods & Profit Calculator</h2>` 
 
-    
+    return html
+}
+
+function showCrops(display){
+    let html = ''
+    const crop = model.data.crops.spring
+    const season = model.viewState.cropPage.cropSeason
+    if (display){
+        for (let i = 0; i < display.length; i++){
+            console.log(display[i])
+            html += /*HTML*/ `
+                    <div><img class="item" src="${display[i].icon}">
+                    ${display[i].text}</div>
+                `
+        }
+    } //Den returnerer html inn i filterCrops funksjonen og 
+    //derfor den ikke virker
+    else {
+        switch (season){
+            case "spring":
+                for (let i = 0; i < crop.length; i++){
+                    html += /*HTML*/ `
+                        <div class="item"><img class="itemimg" src="${crop[i].icon}">
+                        ${crop[i].text}</div>
+                    `
+                }
+            break;
+        }
+    }
     return html
 }

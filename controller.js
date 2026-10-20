@@ -5,19 +5,12 @@ function changePage(newPage){
 }
 
 function searchCrop(input){
-    let search = model.viewState.cropPage.cropSearch
-    search = input
-    filterCrops(input, 'spring')
+    model.viewState.cropPage.cropSearch = input
+    showCrops()
 }
 
-
-function filterCrops(input, season){
-    const crop = model.data.crops.spring
-    let filSearch = []
-    for (let i = 0; i < crop.length; i++){
-        if (crop[i].search.includes(input)){
-            filSearch.push(crop[i])
-        }
-    }
-    showCrops(filSearch)
+function cropSelect(item){
+    console.log(item)
+    model.viewState.cropPage.selectedCrop = item
+    showSelCrop()
 }

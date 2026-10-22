@@ -9,8 +9,17 @@ function searchCrop(input){
     showCrops()
 }
 
-function cropSelect(item){
-    console.log(item)
-    model.viewState.cropPage.selectedCrop = item
+function cropSelect(index){
+    model.viewState.cropPage.selectedCrop = model.data.crops[index]
     showSelCrop()
+}
+
+function removeSel(){
+    model.viewState.cropPage.selectedCrop = ''
+    showCrops()
+}
+
+function setSeason(season){
+    model.viewState.cropPage.cropSeason = season
+    showCrops()
 }

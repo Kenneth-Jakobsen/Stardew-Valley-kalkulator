@@ -25,7 +25,7 @@ function cropView(){
     <h2>Crop & Profit Calculator</h2>
     <section>
         Choose season:
-        <select>
+        <select onchange="setSeason(this.value)">
             <option value="spring">Spring</option>
             <option value="summer">Summer</option>
             <option value="fall">Fall</option>
@@ -89,14 +89,12 @@ function showCrops(){
     const season = model.viewState.cropPage.cropSeason
     const filter = model.viewState.cropPage.cropSearch
     let list = []
-    if (filter !== ''){
-        list = crop.filter(item => item.text.toLowerCase().includes(filter.toLowerCase()))
-    } else {
-        list = [...crop]
-    }
+    list = filterBySearch(filter, list, crop)
+    list = filterBySeason(season, list)
+
     for (let i = 0; i < list.length; i++){
         html += /*HTML*/ `
-                <div class="item" onclick="cropSelect('${list[i].text}')">
+                <div class="item" onclick="cropSelect(${i})">
                 <img class="itemimg" src="${list[i].icon}">
                 ${list[i].text}</div>
             `
@@ -104,16 +102,33 @@ function showCrops(){
     document.querySelector('#cropsDisplay').innerHTML = html
 }
 
+function filterBySearch(filter, list, crop) {
+    if (filter !== '') {
+        list = crop.filter(item => item.text.toLowerCase().includes(filter.toLowerCase()))
+    } else {
+        list = [...crop]
+    }
+    console.log(list)
+    return list
+}
+
+function filterBySeason(currentSeason, list){
+    const crop = model.data.crops
+    list = crop.filter(item => item.season == currentSeason)
+    //console.log(list)
+    return list
+}
+
+
 function showSelCrop(){
     let item = model.viewState.cropPage.selectedCrop
     let html = /*HTML*/ `
         <div>
         <img class="itemimg" src="${item.icon}">
-        ${item}</div>
-
-
-        <button>Remove Selection</button>
-    ` 
+        ${item.text}</div>
+        
+        <button onclick="removeSel()">Remove Selection</button>
+        `
 
     document.querySelector('#cropsDisplay').innerHTML = html
 }
